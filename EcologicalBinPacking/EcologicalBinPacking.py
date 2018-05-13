@@ -28,9 +28,8 @@ class EcologicalBinPacking:
             cost -= self.cost_list[i * 3 + color_index]
         return cost
 
-
-    def print_optimal_movement(self, input_file_name,output_file_name):
-        with open(input_file_name, "r") as input_file, open(output_file_name,"w") as output_file:
+    def print_optimal_movement(self, input_file_name, output_file_name):
+        with open(input_file_name, "r") as input_file, open(output_file_name, "w") as output_file:
             for line in input_file:
                 self.cost_list = map(int, line.split())
                 self.permutations('BGC')

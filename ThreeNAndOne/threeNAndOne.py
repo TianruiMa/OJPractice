@@ -18,7 +18,7 @@ class ThreeNAndOne:
         if e == 1:
             return result_list
         elif e % 2 == 0:
-            e /= 2
+            e >>= 1
         else:
             e = e * 3 + 1
         result_list.extend(self.get_element_calculated(e))
