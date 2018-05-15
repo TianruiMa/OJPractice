@@ -1,9 +1,9 @@
 def read_inputs(input_file_name):
-    with open(input_file_name, "r") as input_file:
+    with open(input_file_name, "r") as input_file, open("output.txt","w") as output_file:
         line = input_file.readline()
         while line != "":
             dimension = int(line)
-            arbitrage = Solution(dimension)
+            arbitrage = Solution(dimension,output_file)
             for n in range(0, dimension):
                 exchange_list = map(float, input_file.readline().split())
                 exchange_list.insert(n, 1)
@@ -13,13 +13,16 @@ def read_inputs(input_file_name):
             arbitrage.find_smallest()
             arbitrage.print_result()
             line = input_file.readline()
+    input_file.close()
+    output_file.close()
 
 
 class Solution:
-    def __init__(self, n):
+    def __init__(self, n,output_file):
         self.total = n
         self.exchange_rate_table = []
         self.trace_list = []
+        self.output_file = output_file
         for a in range(0,n):
             a_list = []
             for b in range(0,n):
@@ -29,10 +32,17 @@ class Solution:
                 a_list.append(b_list)
             self.exchange_rate_table.append(a_list)
 
+
     def print_result(self):
-        for t in self.trace_list:
-            print("%d " % t),
-        print("\n")
+        for i, t in enumerate(self.trace_list):
+            if i == len(self.trace_list)-1:
+                self.output_file.write("%d" % t)
+            else:
+                self.output_file.write("%d " % t)
+            # print("%d " % t),
+        self.output_file.write("\n")
+        # print("")
+
 
     def trace_back(self, start, end, round):
         if round < 2: return
@@ -70,7 +80,10 @@ class Solution:
                             # print(self.trace_list)
                             return
         # print(self.exchange_rate_table)
-        print("no arbitrage sequence exists")
+        # with open("output.txt","w") as output_file:
+        self.output_file.write("no arbitrage sequence exists")
+        # output_file.close()
+        # print("no arbitrage sequence exists"),
 
 
 
