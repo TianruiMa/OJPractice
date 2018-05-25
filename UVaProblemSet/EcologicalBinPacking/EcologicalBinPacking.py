@@ -1,5 +1,4 @@
-import sys
-
+import filecmp
 
 class EcologicalBinPacking:
 
@@ -39,3 +38,10 @@ class EcologicalBinPacking:
                 output_file.write("%s %d\n" % (self.permutation_list[idx], val))
         input_file.close()
         output_file.close()
+
+
+input_file = "TestCases.txt"
+expect = "expect.txt"
+output = "output.txt"
+EcologicalBinPacking().print_optimal_movement(input_file, output)
+print filecmp.cmp(expect,output,shallow=False)

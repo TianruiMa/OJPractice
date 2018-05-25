@@ -1,6 +1,6 @@
 def solver(a, b):
     if a > b:
-        a,b = b,a
+        a, b = b, a
 
     max_cycle_length = 0
 
@@ -22,4 +22,3 @@ def solver(a, b):
         a += 1
 
     return max_cycle_length
-

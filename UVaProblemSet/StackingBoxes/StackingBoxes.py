@@ -1,3 +1,6 @@
+import filecmp
+
+
 class Box:
     def __init__(self, id):
         self.box_id = id
@@ -19,18 +22,16 @@ def generate_box(id, line):
     return new_box
 
 
-def read_input(input_file_name,output_file_name):
-    output_file = open(output_file_name,"w")
+def read_input(input_file_name, output_file_name):
+    output_file = open(output_file_name, "w")
     with open(input_file_name, "r") as input_file:
         number_of_boxes = 0
         box_id = 100
         stack_boxes = None
         for line in input_file:
-            # print("number_of_boxes: %d, box_id: %d" %(number_of_boxes,box_id))
             if box_id > number_of_boxes:
                 (number, dimension) = map(int, line.split())
-                stack_boxes = StackingBoxes(number, dimension,output_file)
-                # print("stack_boxes info: Dlength %d" % len(stack_boxes.d))
+                stack_boxes = StackingBoxes(number, dimension, output_file)
                 number_of_boxes = number
                 box_id = 1
             else:
@@ -74,3 +75,8 @@ class StackingBoxes:
             self.output_file.write("%d\n" % (integer + 1))
 
 
+input_file_name = "TestCases.txt"
+output_file_name = "output.txt"
+expect_file_name = "expect.txt"
+read_input(input_file_name, output_file_name)
+print filecmp.cmp(output_file_name, expect_file_name, shallow=False)

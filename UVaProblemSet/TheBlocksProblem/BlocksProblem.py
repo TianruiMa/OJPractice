@@ -1,3 +1,5 @@
+import filecmp
+
 class Block():
     def __init__(self):
         self.blockId = -1
@@ -97,6 +99,9 @@ class BlocksProblem:
 
 
 
-
-# block_problem = BlocksProblem("TestCases.txt")
-# block_problem.actions("TestCases.txt")
+input_file_name = "TestCases.txt"
+output_file_name = "output.txt"
+expect_file_name = "expect.txt"
+block_game = BlocksProblem(input_file_name)
+block_game.actions(input_file_name, output_file_name)
+print filecmp.cmp(output_file_name, expect_file_name, shallow=False)

@@ -1,3 +1,4 @@
+from solution import solver
 class ThreeNAndOne:
 
     def __init__(self):
@@ -59,6 +60,11 @@ class ThreeNAndOne:
                 self.assertEqual(res, c)
         file.close(inp)
 
-
-# Solver.test_cases()
-# print(count)
+ans = True
+with open("TestCases.txt", "r") as inp:
+    for line in inp:
+        a, b, c = map(int, line.split())
+        res = solver(a, b)
+        ans = ans and (res == c)
+file.close(inp)
+print(ans)
