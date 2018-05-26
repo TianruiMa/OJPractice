@@ -13,3 +13,7 @@ class Solution(object):
         if y > maxInt or y < minInt:
             return 0
         return y
+
+
+ma = dict()
+print ma['c']
