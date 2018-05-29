@@ -1,19 +1,33 @@
 class Solution(object):
-    def romanToInt(self, s):
+    def intToRoman(self, num):
         """
-        :type s: str
-        :rtype: int
+        :type num: int
+        :rtype: str
         """
-        roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
 
-        total = 0
-        s_len = len(s)
-        for i in xrange(s_len - 1):
-            curr_val = roman_dict[s[i]]
-            next_val = roman_dict[s[i + 1]]
-            if curr_val < next_val:
-                total -= curr_val
+        levels = [1000, 500, 100, 50, 10, 5, 1]
+        int_dict = {1000: 'M', 500: 'D', 100: 'C', 50: 'L', 10: 'X', 5: 'V', 1: 'I'}
+
+        roman = ""
+        l = 0
+        while l < len(levels):
+            print("value", levels[l])
+            if num == 0:
+                return roman
+            elif num >= levels[l]:
+                print("find perfect")
+                roman += int_dict[levels[l]]
+                num -= levels[l]
             else:
-                total += curr_val
-        total += roman_dict[s[-1]]
-        return total
+                for d in levels[l+1:][::-1]:
+                    print("d",d)
+                    if num >= levels[l] - d:
+                        roman += int_dict[d] + int_dict[levels[l]]
+                        num -= (levels[l] - d)
+                        break
+                l += 1
+
+        return roman
+
+a = 4
+print(Solution().intToRoman(a))
