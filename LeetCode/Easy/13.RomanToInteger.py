@@ -8,4 +8,4 @@ class Solution(object):
         B = ['','X','XX','XXX','XL','L','LX','LXX','LXXX','XC']
         C = ['','C','CC','CCC','CD','D','DC','DCC','DCCC','CM']
         D = ['','M','MM','MMM']
-        return D[data/1000]+C[data%1000/100]+B[data%100/10]+A[data%10]
+        return D[num/1000]+C[num%1000/100]+B[num%100/10]+A[num%10]
