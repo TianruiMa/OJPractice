@@ -52,5 +52,7 @@ class Trie(object):
 
 
 
-a = [1,2,3,4,5]
-print a.rfind(1)
+a = [2,2,2,2,2]
+b = [3,[3],3]
+a[1:1] = b
+print a
