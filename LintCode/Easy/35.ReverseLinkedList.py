@@ -34,7 +34,7 @@ class Solution:
         return last
 
 
-a = ListNode(1)city
+a = ListNode(1)
 a.next = ListNode(2)
 a.next.next = ListNode(3)
 
